@@ -128,6 +128,11 @@ class SignUpViewController: UIViewController {
     private var elementsStackView = UIStackView()
     private let datePicker = UIDatePicker()
     
+    let nameValidType: String.ValidTypes = .name
+    let emailValidType: String.ValidTypes = .email
+    let passwordValidType: String.ValidTypes = .password
+
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -191,18 +196,35 @@ class SignUpViewController: UIViewController {
     }
 }
 
-private func setTextFieald(textField: UITextField, label: UILabel, validMassege: String, wrongMassege: String, string: String, range: NSRange){
+private func setTextFieald(textField: UITextField, label: UILabel, validType: String.ValidTypes , validMassege: String, wrongMassege: String, string: String, range: NSRange){
+    
+    if string.isValid(validType: validType){
+        print("+")
+    } else {
+        print("-")
+    }
+    
     let text = (textField.text ?? "") + string
     let result: String
     
     if range.length == 1 {
         let end = text.index(text.startIndex, offsetBy: text.count - 1)
-        result = String(text[text.startIndex...end])
+        result = String(text[text.startIndex..<end])
+        print(result)
     } else{
         result = text
     }
     
     textField.text = result
+    print(result)
+    
+    if result.isValid(validType: validType) {
+        label.text = validMassege
+        label.textColor = .green
+    }else{
+        label.text = wrongMassege
+        label.textColor = .red
+    }
 
 }
 
@@ -212,7 +234,43 @@ private func setTextFieald(textField: UITextField, label: UILabel, validMassege:
 extension SignUpViewController: UITextFieldDelegate {
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-                
+        
+        switch textField {
+        case firstNameTextField: setTextFieald(textField: firstNameTextField,
+                                               label: firstNameValidLabel,
+                                               validType: nameValidType,
+                                               validMassege: "Name is valid",
+                                               wrongMassege: "Only A-Z charcters and min 1 charcter",
+                                               string: string,
+                                               range: range)
+            
+        case secondNameTextField: setTextFieald(textField: firstNameTextField,
+                                               label: firstNameValidLabel,
+                                               validType: nameValidType,
+                                               validMassege: "Name is valid",
+                                               wrongMassege: "Only A-Z charcters and min 1 charcter",
+                                               string: string,
+                                               range: range)
+        
+        case emailTextField: setTextFieald(textField: emailTextField,
+                                               label: emailValidLabel,
+                                               validType: emailValidType,
+                                               validMassege: "email is valid",
+                                               wrongMassege: "email is not valid",
+                                               string: string,
+                                               range: range)
+            
+        case passwordTextField: setTextFieald(textField: passwordTextField,
+                                               label: passwordValidLabel,
+                                               validType: passwordValidType,
+                                               validMassege: "password is valid",
+                                               wrongMassege: "password is not valid", // сделать подсказку какой пароль
+                                               string: string,
+                                               range: range)
+
+        default: break
+        }
+        
         return false
     }
     
@@ -233,7 +291,7 @@ extension SignUpViewController{
     private func registerKeyboardNotification() {
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
 
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardDidHideNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
     }
     
     private func removeKeyboardNotification() {
