@@ -5,7 +5,6 @@
 //  Created by Andrey Samchenko on 08.10.2021.
 //
 
-
 import UIKit
 
 class AuthViewController: UIViewController {
@@ -105,16 +104,14 @@ class AuthViewController: UIViewController {
     }
     
     @objc private func signUpButtonTapped() {
-//        let signUpViewController = SignUpViewController()
-//        self.present(signUpViewController, animated: true)
-        print("323")
+        let signUpViewController = SignUpViewController()
+        self.present(signUpViewController, animated: true)
     }
     
     @objc private func signInButtonTapped() {
-//        let navVC = UINavigationController(rootViewController: AlbumsViewController())
-//        navVC.modalPresentationStyle = .fullScreen
-//        self.present(navVC, animated: true)
-        print("232")
+        let navVC = UINavigationController(rootViewController: AlbumsViewController())
+        navVC.modalPresentationStyle = .fullScreen
+        self.present(navVC, animated: true)
     }
 }
 

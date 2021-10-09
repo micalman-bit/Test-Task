@@ -2,7 +2,7 @@
 //  UIStackView + Extension.swift
 //  Itunes_testTask_youTube
 //
-//  Created by Сергей Горбачёв on 06.10.2021.
+//  Created by Andrey Samchenko on 08.10.2021.
 //
 
 import UIKit
