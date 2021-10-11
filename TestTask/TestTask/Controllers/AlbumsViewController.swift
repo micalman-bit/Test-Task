@@ -48,6 +48,9 @@ class AlbumsViewController: UIViewController {
         
         let userInfoButton = createCustomButton(selector: #selector(userInfoButtonTapped))
         navigationItem.rightBarButtonItem = userInfoButton
+        
+//        let exitButton = createCustomButton(selector: #selector(exitButtonTapped))
+//        navigationItem.leftBarButtonItem = exitButton
     }
     
     private func setupSearchController() {
@@ -60,6 +63,13 @@ class AlbumsViewController: UIViewController {
         navigationController?.pushViewController(userInfoViewController, animated: true)
 
     }
+    
+//    @objc private func exitButtonTapped() {
+//        let userInfoViewController = AuthViewController()
+//        navigationController?.pushViewController(userInfoViewController, animated: true)
+//
+//    }
+
 }
 
 //MARK: - UITableViewDataSource

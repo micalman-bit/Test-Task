@@ -192,41 +192,109 @@ class SignUpViewController: UIViewController {
     }
     
     @objc private func signUpButtonTapped() {
-        print("SignUpTap")
+        
+        let firstNameText = firstNameTextField.text ?? ""
+        let secondNameText = secondNameTextField.text ?? ""
+        let emailText = emailTextField.text ?? ""
+        let passwordText = passwordTextField.text ?? ""
+        let phoneText = phoneNumberTextField.text ?? ""
+        
+        if firstNameText.isValid(validType: nameValidType)
+            && secondNameText.isValid(validType: nameValidType)
+            && emailText.isValid(validType: emailValidType)
+            && passwordText.isValid(validType: passwordValidType)
+            && phoneText.count == 18
+            && ageIsValid() == true {
+            
+            DataBase.shared.saveUser(firstName: firstNameText,
+                                     secondName: secondNameText,
+                                     phone: phoneText,
+                                     email: emailText,
+                                     password: passwordText,
+                                     age: datePicker.date)
+            loginLabel.text = "Registration complite"
+            print("+")
+        } else {
+            loginLabel.text = "Registration"
+            alertOk(title: "Error", massege: "Fill in the all filds")
+            print("-")
+        }
     }
-}
 
-private func setTextFieald(textField: UITextField, label: UILabel, validType: String.ValidTypes , validMassege: String, wrongMassege: String, string: String, range: NSRange){
-    
-    if string.isValid(validType: validType){
-        print("+")
-    } else {
-        print("-")
-    }
-    
-    let text = (textField.text ?? "") + string
-    let result: String
-    
-    if range.length == 1 {
-        let end = text.index(text.startIndex, offsetBy: text.count - 1)
-        result = String(text[text.startIndex..<end])
+    private func setTextFieald(textField: UITextField, label: UILabel, validType: String.ValidTypes , validMassege: String, wrongMassege: String, string: String, range: NSRange){
+        
+        if string.isValid(validType: validType){
+            print("+")
+        } else {
+            print("-")
+        }
+        
+        let text = (textField.text ?? "") + string
+        let result: String
+        
+        if range.length == 1 {
+            let end = text.index(text.startIndex, offsetBy: text.count - 1)
+            result = String(text[text.startIndex..<end])
+            print(result)
+        } else{
+            result = text
+        }
+        
+        textField.text = result
         print(result)
-    } else{
-        result = text
+        
+        if result.isValid(validType: validType) {
+            label.text = validMassege
+            label.textColor = .green
+        }else{
+            label.text = wrongMassege
+            label.textColor = .red
+            label.numberOfLines = 0
+        }
+
+    }
+
+    private func setPhoneMask(textField: UITextField, mask: String, string: String, range: NSRange) -> String {
+        
+        let text = textField.text ?? ""
+        
+        let phone = (text as! NSString).replacingCharacters(in: range, with: string)
+        let number = phone.replacingOccurrences(of: "[^0-9]", with: "", options: .regularExpression)
+        var result = ""
+        var index = number.startIndex
+        
+        for character in mask where index < number.endIndex {
+            if character == "X" {
+                result.append(number[index])
+                index = number.index(after: index)
+            } else {
+                result.append(character)
+            }
+        }
+        
+        if result.count == 18 {
+            phoneValidLabel.text = "Phone is valid"
+            phoneValidLabel.textColor = .green
+        } else {
+            phoneValidLabel.text = "Phone is not valid"
+            phoneValidLabel.textColor = .red
+        }
+        return result
     }
     
-    textField.text = result
-    print(result)
-    
-    if result.isValid(validType: validType) {
-        label.text = validMassege
-        label.textColor = .green
-    }else{
-        label.text = wrongMassege
-        label.textColor = .red
+    private func ageIsValid() -> Bool {
+        let calendar = NSCalendar.current
+        let dateNow = Date()
+        let bithday = datePicker.date
+        
+        let age = calendar.dateComponents([.year], from: bithday, to: dateNow)
+        let ageYear = age.year
+        guard let ageUser = ageYear else { return false }
+        return (ageUser < 28 ? false : true)
     }
 
 }
+
 
 
 //MARK: - UITextFieldDelegate
@@ -244,8 +312,8 @@ extension SignUpViewController: UITextFieldDelegate {
                                                string: string,
                                                range: range)
             
-        case secondNameTextField: setTextFieald(textField: firstNameTextField,
-                                               label: firstNameValidLabel,
+        case secondNameTextField: setTextFieald(textField: secondNameTextField,
+                                               label: secondNameValidLabel,
                                                validType: nameValidType,
                                                validMassege: "Name is valid",
                                                wrongMassege: "Only A-Z charcters and min 1 charcter",
@@ -256,7 +324,7 @@ extension SignUpViewController: UITextFieldDelegate {
                                                label: emailValidLabel,
                                                validType: emailValidType,
                                                validMassege: "email is valid",
-                                               wrongMassege: "email is not valid",
+                                               wrongMassege: "email is not valid. Example: dog@dog.com",
                                                string: string,
                                                range: range)
             
@@ -264,9 +332,14 @@ extension SignUpViewController: UITextFieldDelegate {
                                                label: passwordValidLabel,
                                                validType: passwordValidType,
                                                validMassege: "password is valid",
-                                               wrongMassege: "password is not valid", // сделать подсказку какой пароль
+                                               wrongMassege: "password is not valid. Min at least 6 characters, 1 lowercase and uppercase", // сделать подсказку какой пароль
                                                string: string,
                                                range: range)
+            
+        case phoneNumberTextField: phoneNumberTextField.text = setPhoneMask(textField: phoneNumberTextField,
+                                                                            mask: "+X (XXX) XXX-XX-XX",
+                                                                            string: string,
+                                                                            range: range)
 
         default: break
         }

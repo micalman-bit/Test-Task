@@ -12,6 +12,9 @@
 		C430004427102DBF00405D23 /* AuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C430004327102DBF00405D23 /* AuthViewController.swift */; };
 		C430004927102DC100405D23 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C430004827102DC100405D23 /* Assets.xcassets */; };
 		C430004C27102DC100405D23 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C430004A27102DC100405D23 /* LaunchScreen.storyboard */; };
+		C472C4292712E38C00AA3BFE /* UserDefaultManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C472C4282712E38C00AA3BFE /* UserDefaultManager.swift */; };
+		C472C42C2712E5D700AA3BFE /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C472C42B2712E5D700AA3BFE /* UserModel.swift */; };
+		C487193A271393220067EF17 /* AlertOk.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4871939271393220067EF17 /* AlertOk.swift */; };
 		C4CBA78C2710C2680063AD82 /* UIViewController + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4CBA78A2710C2680063AD82 /* UIViewController + Extension.swift */; };
 		C4CBA78D2710C2680063AD82 /* UIStackView + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4CBA78B2710C2680063AD82 /* UIStackView + Extension.swift */; };
 		C4CBA78F2710C4820063AD82 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4CBA78E2710C4820063AD82 /* SignUpViewController.swift */; };
@@ -31,6 +34,9 @@
 		C430004827102DC100405D23 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C430004B27102DC100405D23 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C430004D27102DC100405D23 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C472C4282712E38C00AA3BFE /* UserDefaultManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultManager.swift; sourceTree = "<group>"; };
+		C472C42B2712E5D700AA3BFE /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
+		C4871939271393220067EF17 /* AlertOk.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertOk.swift; sourceTree = "<group>"; };
 		C4CBA78A2710C2680063AD82 /* UIViewController + Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController + Extension.swift"; sourceTree = "<group>"; };
 		C4CBA78B2710C2680063AD82 /* UIStackView + Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIStackView + Extension.swift"; sourceTree = "<group>"; };
 		C4CBA78E2710C4820063AD82 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
@@ -74,10 +80,29 @@
 			children = (
 				C4CBA7852710320E0063AD82 /* Applications */,
 				C4CBA786271032330063AD82 /* Controllers */,
+				C472C42A2712E5BA00AA3BFE /* Model */,
+				C472C4272712E2FA00AA3BFE /* Services */,
 				C4CBA7882710C2680063AD82 /* Extensions */,
 				C4CBA7872710325D0063AD82 /* Resources */,
 			);
 			path = TestTask;
+			sourceTree = "<group>";
+		};
+		C472C4272712E2FA00AA3BFE /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				C472C4282712E38C00AA3BFE /* UserDefaultManager.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		C472C42A2712E5BA00AA3BFE /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				C472C42B2712E5D700AA3BFE /* UserModel.swift */,
+				C4871939271393220067EF17 /* AlertOk.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		C4CBA7852710320E0063AD82 /* Applications */ = {
@@ -216,8 +241,11 @@
 				C4CBA79927119E230063AD82 /* AlbumsTableViewCell.swift in Sources */,
 				C430004427102DBF00405D23 /* AuthViewController.swift in Sources */,
 				C430004027102DBF00405D23 /* AppDelegate.swift in Sources */,
+				C487193A271393220067EF17 /* AlertOk.swift in Sources */,
 				C4CBA78C2710C2680063AD82 /* UIViewController + Extension.swift in Sources */,
+				C472C42C2712E5D700AA3BFE /* UserModel.swift in Sources */,
 				C4CBA79427119E1D0063AD82 /* DetailAlbumViewController.swift in Sources */,
+				C472C4292712E38C00AA3BFE /* UserDefaultManager.swift in Sources */,
 				C4CBA78D2710C2680063AD82 /* UIStackView + Extension.swift in Sources */,
 				C430004227102DBF00405D23 /* SceneDelegate.swift in Sources */,
 				C4CBA79A27119E230063AD82 /* SongsCollectionViewCell.swift in Sources */,

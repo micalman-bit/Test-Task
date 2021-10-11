@@ -76,6 +76,9 @@ class AuthViewController: UIViewController {
         setupDelegate()
         setConstraints()
         registerKeyboardNotification()
+        
+        let dataBase = DataBase.shared.users
+        print(dataBase)
     }
 
     deinit {
@@ -114,9 +117,37 @@ class AuthViewController: UIViewController {
     }
     
     @objc private func signInButtonTapped() {
-        let navVC = UINavigationController(rootViewController: AlbumsViewController())
-        navVC.modalPresentationStyle = .fullScreen
-        self.present(navVC, animated: true)
+
+        let mail = emailTextField.text ?? ""
+        let password = passwordTextField.text ?? ""
+        let user = findUserDataBase(mail: mail)
+        
+        if user == nil {
+            loginLabel.text = "user not found"
+            loginLabel.textColor = .red
+        } else if user?.password == password {
+            let navVC = UINavigationController(rootViewController: AlbumsViewController())
+            navVC.modalPresentationStyle = .fullScreen
+            
+            guard let activeUser = user else { return }
+            DataBase.shared.saveActiveUser(user: activeUser)
+            self.present(navVC, animated: true)
+        } else {
+            loginLabel.text = "Wrong password"
+            loginLabel.textColor = .red
+        }
+}
+    
+    private func findUserDataBase(mail: String) -> User? {
+
+        let dataBase = DataBase.shared.users
+        
+        for user in dataBase {
+            if user.email == mail {
+                return user
+            }
+        }
+        return nil
     }
 }
 
