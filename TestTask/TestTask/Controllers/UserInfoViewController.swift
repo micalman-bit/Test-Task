@@ -8,6 +8,13 @@
 import UIKit
 
 class UserInfoViewController: UIViewController {
+    
+    private let nameLabel: UILabel = {
+        let label = UILabel()
+        label.text = "Имя"
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
 
     private let firstNameLabel: UILabel = {
         let label = UILabel()
