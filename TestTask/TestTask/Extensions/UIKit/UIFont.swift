@@ -2,7 +2,7 @@
 //  UIFont.swift
 //  MySchedule
 //
-//  Created by Андрей Самченко on 17.07.2021.
+//  Created by Andrey Samchenko on 08.10.2021.
 //
 
 import UIKit
