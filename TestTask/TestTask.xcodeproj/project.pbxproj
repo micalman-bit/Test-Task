@@ -16,6 +16,13 @@
 		C472C42C2712E5D700AA3BFE /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C472C42B2712E5D700AA3BFE /* UserModel.swift */; };
 		C487193A271393220067EF17 /* AlertOk.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4871939271393220067EF17 /* AlertOk.swift */; };
 		C48719422715BA110067EF17 /* TestTaskTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C48719412715BA110067EF17 /* TestTaskTests.swift */; };
+		C487199027176AB50067EF17 /* TestAlbumsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C487198F27176AB50067EF17 /* TestAlbumsViewController.swift */; };
+		C4871992271777030067EF17 /* TestAlertOk.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4871991271777030067EF17 /* TestAlertOk.swift */; };
+		C487199427186DCB0067EF17 /* AlbumModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C487199327186DCB0067EF17 /* AlbumModel.swift */; };
+		C4871997271870BC0067EF17 /* NetworkRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4871996271870BC0067EF17 /* NetworkRequest.swift */; };
+		C4871999271877EB0067EF17 /* UIFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4871998271877EB0067EF17 /* UIFont.swift */; };
+		C487199B27187A020067EF17 /* NetworkDataFetch.swift in Sources */ = {isa = PBXBuildFile; fileRef = C487199A27187A020067EF17 /* NetworkDataFetch.swift */; };
+		C487199D2719727E0067EF17 /* SongsModel .swift in Sources */ = {isa = PBXBuildFile; fileRef = C487199C2719727E0067EF17 /* SongsModel .swift */; };
 		C4CBA78C2710C2680063AD82 /* UIViewController + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4CBA78A2710C2680063AD82 /* UIViewController + Extension.swift */; };
 		C4CBA78D2710C2680063AD82 /* UIStackView + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4CBA78B2710C2680063AD82 /* UIStackView + Extension.swift */; };
 		C4CBA78F2710C4820063AD82 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4CBA78E2710C4820063AD82 /* SignUpViewController.swift */; };
@@ -50,6 +57,13 @@
 		C4871939271393220067EF17 /* AlertOk.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertOk.swift; sourceTree = "<group>"; };
 		C487193F2715BA110067EF17 /* TestTaskTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TestTaskTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C48719412715BA110067EF17 /* TestTaskTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestTaskTests.swift; sourceTree = "<group>"; };
+		C487198F27176AB50067EF17 /* TestAlbumsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestAlbumsViewController.swift; sourceTree = "<group>"; };
+		C4871991271777030067EF17 /* TestAlertOk.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestAlertOk.swift; sourceTree = "<group>"; };
+		C487199327186DCB0067EF17 /* AlbumModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumModel.swift; sourceTree = "<group>"; };
+		C4871996271870BC0067EF17 /* NetworkRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkRequest.swift; sourceTree = "<group>"; };
+		C4871998271877EB0067EF17 /* UIFont.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIFont.swift; sourceTree = "<group>"; };
+		C487199A27187A020067EF17 /* NetworkDataFetch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkDataFetch.swift; sourceTree = "<group>"; };
+		C487199C2719727E0067EF17 /* SongsModel .swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SongsModel .swift"; sourceTree = "<group>"; };
 		C4CBA78A2710C2680063AD82 /* UIViewController + Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController + Extension.swift"; sourceTree = "<group>"; };
 		C4CBA78B2710C2680063AD82 /* UIStackView + Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIStackView + Extension.swift"; sourceTree = "<group>"; };
 		C4CBA78E2710C4820063AD82 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
@@ -103,8 +117,9 @@
 				C4CBA7852710320E0063AD82 /* Applications */,
 				C4CBA786271032330063AD82 /* Controllers */,
 				C472C42A2712E5BA00AA3BFE /* Model */,
-				C472C4272712E2FA00AA3BFE /* Services */,
+				C4871995271870800067EF17 /* Network */,
 				C4CBA7882710C2680063AD82 /* Extensions */,
+				C472C4272712E2FA00AA3BFE /* Services */,
 				C4CBA7872710325D0063AD82 /* Resources */,
 			);
 			path = TestTask;
@@ -123,6 +138,8 @@
 			children = (
 				C472C42B2712E5D700AA3BFE /* UserModel.swift */,
 				C4871939271393220067EF17 /* AlertOk.swift */,
+				C487199327186DCB0067EF17 /* AlbumModel.swift */,
+				C487199C2719727E0067EF17 /* SongsModel .swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -130,9 +147,36 @@
 		C48719402715BA110067EF17 /* TestTaskTests */ = {
 			isa = PBXGroup;
 			children = (
-				C48719412715BA110067EF17 /* TestTaskTests.swift */,
+				C487198E27176A790067EF17 /* Controller */,
+				C487198D2717664C0067EF17 /* Model */,
 			);
 			path = TestTaskTests;
+			sourceTree = "<group>";
+		};
+		C487198D2717664C0067EF17 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				C48719412715BA110067EF17 /* TestTaskTests.swift */,
+				C4871991271777030067EF17 /* TestAlertOk.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		C487198E27176A790067EF17 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				C487198F27176AB50067EF17 /* TestAlbumsViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		C4871995271870800067EF17 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				C4871996271870BC0067EF17 /* NetworkRequest.swift */,
+				C487199A27187A020067EF17 /* NetworkDataFetch.swift */,
+			);
+			path = Network;
 			sourceTree = "<group>";
 		};
 		C4CBA7852710320E0063AD82 /* Applications */ = {
@@ -181,6 +225,7 @@
 			children = (
 				C4CBA78A2710C2680063AD82 /* UIViewController + Extension.swift */,
 				C4CBA78B2710C2680063AD82 /* UIStackView + Extension.swift */,
+				C4871998271877EB0067EF17 /* UIFont.swift */,
 			);
 			path = UIKit;
 			sourceTree = "<group>";
@@ -297,18 +342,23 @@
 				C4CBA78F2710C4820063AD82 /* SignUpViewController.swift in Sources */,
 				C4CBA79327119E1D0063AD82 /* UserInfoViewController.swift in Sources */,
 				C4CBA79527119E1D0063AD82 /* AlbumsViewController.swift in Sources */,
+				C487199D2719727E0067EF17 /* SongsModel .swift in Sources */,
 				C4CBA79C2711B6DA0063AD82 /* String + Extension .swift in Sources */,
 				C4CBA79927119E230063AD82 /* AlbumsTableViewCell.swift in Sources */,
 				C430004427102DBF00405D23 /* AuthViewController.swift in Sources */,
+				C487199B27187A020067EF17 /* NetworkDataFetch.swift in Sources */,
 				C430004027102DBF00405D23 /* AppDelegate.swift in Sources */,
 				C487193A271393220067EF17 /* AlertOk.swift in Sources */,
+				C4871999271877EB0067EF17 /* UIFont.swift in Sources */,
 				C4CBA78C2710C2680063AD82 /* UIViewController + Extension.swift in Sources */,
 				C472C42C2712E5D700AA3BFE /* UserModel.swift in Sources */,
 				C4CBA79427119E1D0063AD82 /* DetailAlbumViewController.swift in Sources */,
 				C472C4292712E38C00AA3BFE /* UserDefaultManager.swift in Sources */,
 				C4CBA78D2710C2680063AD82 /* UIStackView + Extension.swift in Sources */,
+				C487199427186DCB0067EF17 /* AlbumModel.swift in Sources */,
 				C430004227102DBF00405D23 /* SceneDelegate.swift in Sources */,
 				C4CBA79A27119E230063AD82 /* SongsCollectionViewCell.swift in Sources */,
+				C4871997271870BC0067EF17 /* NetworkRequest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -316,6 +366,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C487199027176AB50067EF17 /* TestAlbumsViewController.swift in Sources */,
+				C4871992271777030067EF17 /* TestAlertOk.swift in Sources */,
 				C48719422715BA110067EF17 /* TestTaskTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

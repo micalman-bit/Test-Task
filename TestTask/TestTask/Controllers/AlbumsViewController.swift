@@ -18,6 +18,9 @@ class AlbumsViewController: UIViewController {
     }()
     
     private let searchController = UISearchController(searchResultsController: nil)
+    
+    var albums = [Album]()
+    var timer: Timer?
  
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -32,6 +35,8 @@ class AlbumsViewController: UIViewController {
         setConstraints()
         setNavigationBar()
         setupSearchController()
+        
+        fetchAlbum(albumName: "Sheffield")
     }
 
     private func setupViews() {
@@ -53,9 +58,6 @@ class AlbumsViewController: UIViewController {
         
         let userInfoButton = createCustomButton(selector: #selector(userInfoButtonTapped))
         navigationItem.rightBarButtonItem = userInfoButton
-        
-//        let exitButton = createCustomButton(selector: #selector(exitButtonTapped))
-//        navigationItem.leftBarButtonItem = exitButton
     }
     
     private func setupSearchController() {
@@ -66,15 +68,35 @@ class AlbumsViewController: UIViewController {
     @objc private func userInfoButtonTapped() {
         let userInfoViewController = UserInfoViewController()
         navigationController?.pushViewController(userInfoViewController, animated: true)
-
     }
     
-//    @objc private func exitButtonTapped() {
-//        let userInfoViewController = AuthViewController()
-//        navigationController?.pushViewController(userInfoViewController, animated: true)
-//
-//    }
-
+    func fetchAlbum(albumName: String) {
+        
+        let urlString = "https://itunes.apple.com/search?term=\(albumName)&entity=album&attribute=albumTerm"
+        
+        NetworkDataFetch.shared.fetchAlbum(urlString: urlString) { [weak self] albumModel, error in
+            
+            if error == nil {
+                
+                if albumModel?.results != []{
+                    guard let albumModel = albumModel else { return }
+                    
+                    let sortedAlbum = albumModel.results.sorted { firstItem, secondItem in
+                        return firstItem.collectionName.compare(secondItem.collectionName) == ComparisonResult.orderedAscending
+                    }
+                    
+                    self?.albums = sortedAlbum
+                    self?.tableView.reloadData()
+                    print(self?.albums)
+                } else {
+                    self?.alertOk(title: "Error", massege: "Not found. Add some words")
+                }
+            } else {
+                print(error!.localizedDescription)
+            }
+        }
+    }
+    
     private func animateTableVeiw() {
         tableView.reloadData()
         
@@ -102,12 +124,13 @@ class AlbumsViewController: UIViewController {
 
 extension AlbumsViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        10
+        return albums.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! AlbumsTableViewCell
-        
+        let album = albums[indexPath.row]
+        cell.configureAlbumeCell(album: album)
         return cell
     }
 }
@@ -122,6 +145,9 @@ extension AlbumsViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let detailAlbumViewController = DetailAlbumViewController()
+        let album = albums[indexPath.row]
+        detailAlbumViewController.album = album
+        detailAlbumViewController.title = album.artistName
         navigationController?.pushViewController(detailAlbumViewController, animated: true)
     }
 }
@@ -130,8 +156,15 @@ extension AlbumsViewController: UITableViewDelegate {
 
 extension AlbumsViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-          
-        print(searchText)
+        
+        let text = searchText.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)
+        
+        if text != "" {
+            timer?.invalidate()
+            timer = Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false, block: { [weak self] _ in
+                self?.fetchAlbum(albumName: text!)
+            })
+        }
     }
 }
 

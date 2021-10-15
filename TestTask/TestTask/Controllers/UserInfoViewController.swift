@@ -9,16 +9,10 @@ import UIKit
 
 class UserInfoViewController: UIViewController {
     
-    private let nameLabel: UILabel = {
-        let label = UILabel()
-        label.text = "Имя"
-        label.translatesAutoresizingMaskIntoConstraints = false
-        return label
-    }()
-
     private let firstNameLabel: UILabel = {
         let label = UILabel()
         label.text = "First Name"
+        label.font = .avenirNextDemiBold20()
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -26,6 +20,7 @@ class UserInfoViewController: UIViewController {
     private let secondNameLabel: UILabel = {
         let label = UILabel()
         label.text = "Second Name"
+        label.font = .avenirNextDemiBold20()
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -33,6 +28,7 @@ class UserInfoViewController: UIViewController {
     private let ageLabel: UILabel = {
         let label = UILabel()
         label.text = "Age"
+        label.font = .avenirNextDemiBold20()
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -40,6 +36,7 @@ class UserInfoViewController: UIViewController {
     private let phoneLabel: UILabel = {
         let label = UILabel()
         label.text = "Phone"
+        label.font = .avenirNextDemiBold20()
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -47,6 +44,7 @@ class UserInfoViewController: UIViewController {
     private let emailLabel: UILabel = {
         let label = UILabel()
         label.text = "Email"
+        label.font = .avenirNextDemiBold20()
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -54,6 +52,7 @@ class UserInfoViewController: UIViewController {
     private let passwordLabel: UILabel = {
         let label = UILabel()
         label.text = "Password"
+        label.font = .avenirNextDemiBold20()
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -62,7 +61,7 @@ class UserInfoViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+                
         setupViews()
         setConstraints()
         setModel()
@@ -79,7 +78,7 @@ class UserInfoViewController: UIViewController {
                                                    emailLabel,
                                                    passwordLabel],
                                 axis: .vertical,
-                                spacing: 10,
+                                spacing: 20,
                                 distribution: .fillProportionally)
         
         view.addSubview(stackView)
@@ -92,12 +91,12 @@ class UserInfoViewController: UIViewController {
         dateFormatter.dateFormat = "dd.MM.yyyy"
         let dateString = dateFormatter.string(from: activeUser.age)
         
-        firstNameLabel.text = activeUser.firstName
-        secondNameLabel.text = activeUser.secondName
-        phoneLabel.text = activeUser.phone
-        emailLabel.text = activeUser.email
-        passwordLabel.text = activeUser.password
-        ageLabel.text = dateString
+        firstNameLabel.text = "Name: " + activeUser.firstName
+        secondNameLabel.text = "Surname: " + activeUser.secondName
+        phoneLabel.text = "Phone: " + activeUser.phone
+        emailLabel.text = "Email: " + activeUser.email
+        passwordLabel.text = "Password: " + activeUser.password
+        ageLabel.text = "Date of birth: " + dateString
     }
 }
 
@@ -109,7 +108,7 @@ extension UserInfoViewController {
 
         NSLayoutConstraint.activate([
             stackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
-            stackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+            stackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 50),
             stackView.centerYAnchor.constraint(equalTo: view.centerYAnchor)
         ])
     }
